@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class OneHomeServiceImpl implements OneHomeService{
 
@@ -25,6 +27,11 @@ public class OneHomeServiceImpl implements OneHomeService{
     @Override
     public OneHomeSprintItem get(int id) {
         return appDAO.get(id);
+    }
+
+    @Override
+    public List<OneHomeSprintItem> getAll() {
+        return appDAO.getAll();
     }
 
     @Override
