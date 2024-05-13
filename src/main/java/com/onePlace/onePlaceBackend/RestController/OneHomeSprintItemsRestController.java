@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api")
+@CrossOrigin(origins = "*") // Allow requests from localhost:3000
 public class OneHomeSprintItemsRestController {
 
     private final OneHomeService oneHomeService;
@@ -32,6 +35,12 @@ public class OneHomeSprintItemsRestController {
     @GetMapping("/sprintItem/{id}")
     public ResponseEntity<OneHomeSprintItem> getSprintItem(@PathVariable int id){
         OneHomeSprintItem sprintItem = oneHomeService.get(id);
+        return ResponseEntity.ok(sprintItem);
+    }
+
+    @GetMapping("/sprintItems")
+    public ResponseEntity<List<OneHomeSprintItem>> getSprintItems(){
+        List<OneHomeSprintItem> sprintItem = oneHomeService.getAll();
         return ResponseEntity.ok(sprintItem);
     }
 
